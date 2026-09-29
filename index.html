@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS Tunisie — Montres de Luxe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e8d5b0;
+            --dark: #0a0a0a;
+            --dark-2: #141414;
+            --dark-3: #1e1e1e;
+            --text: #f5f5f5;
+            --text-muted: #999;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .cart-btn:hover {
+            color: var(--gold);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 0.7rem;
+            font-weight: 600;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #1a1510 0%, #0a0a0a 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-solid {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-solid:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--dark-2);
+            border: 1px solid rgba(201, 169, 110, 0.08);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(201, 169, 110, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 320px;
+            background: var(--dark-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .product-price .old {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+            font-weight: 400;
+        }
+
+        .product-rating {
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Features */
+        .features {
+            background: var(--dark-2);
+            border-top: 1px solid rgba(201, 169, 110, 0.05);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.05);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Brands */
+        .brands-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(201, 169, 110, 0.05);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.05);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .brand-name:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--dark-2);
+            z-index: 2001;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(201, 169, 110, 0.1);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-cart:hover {
+            color: var(--gold);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            background: var(--dark-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            background: var(--dark-3);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin-left: auto;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: #e74c3c;
+        }
+
+        .cart-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(201, 169, 110, 0.1);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .cart-total span:last-child {
+            color: var(--gold);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gold);
+            border: none;
+            color: var(--dark);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--gold);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 169, 110, 0.05);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--dark-2);
+            border: 1px solid var(--gold);
+            padding: 1rem 1.5rem;
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-sidebar {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .brands-bar {
+                gap: 2rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        /* Animations on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">CHRONOS</a>
+            <ul class="nav-links">
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#marques">Marques</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Luxury Watches • Tunisie</p>
+            <h1 class="hero-title">L'Art du <span>Temps</span></h1>
+            <p class="hero-desc">Découvrez notre collection exclusive de montres de luxe. Les plus grandes marques mondiales livrées chez vous partout en Tunisie.</p>
+            <a href="#collection" class="btn">Découvrir la Collection</a>
+        </div>
+    </section>
+
+    <!-- Brands Bar -->
+    <div class="brands-bar">
+        <span class="brand-name">ROLEX</span>
+        <span class="brand-name">OMEGA</span>
+        <span class="brand-name">CARTIER</span>
+        <span class="brand-name">PATEK PHILIPPE</span>
+        <span class="brand-name">AUDEMARS PIGUET</span>
+        <span class="brand-name">TAG HEUER</span>
+    </div>
+
+    <!-- Collection -->
+    <section id="collection">
+        <div class="section-header">
+            <p class="section-subtitle">Notre Sélection</p>
+            <h2 class="section-title">Collection Exclusive</h2>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="rolex">Rolex</button>
+            <button class="filter-btn" data-filter="omega">Omega</button>
+            <button class="filter-btn" data-filter="cartier">Cartier</button>
+            <button class="filter-btn" data-filter="tag-heuer">Tag Heuer</button>
+            <button class="filter-btn" data-filter="patek">Patek Philippe</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded by JS -->
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="services">
+        <div class="section-header">
+            <p class="section-subtitle">Pourquoi Nous</p>
+            <h2 class="section-title">L'Excellence Chronos</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon">✅</div>
+                <h3 class="feature-title">100% Authentique</h3>
+                <p class="feature-desc">Toutes nos montres sont certifiées authentiques avec garantie internationale.</p>
+            </div>
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon">🚚</div>
+                <h3 class="feature-title">Livraison Tunisie</h3>
+                <p class="feature-desc">Livraison rapide et sécurisée dans toutes les gouvernorats de Tunisie.</p>
+            </div>
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Paiement Sécurisé</h3>
+                <p class="feature-desc">Paiement par carte bancaire, virement ou à la livraison en toute sécurité.</p>
+            </div>
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon">💎</div>
+                <h3 class="feature-title">Service Premium</h3>
+                <p class="feature-desc">Service après-vente dédié et conseil personnalisé de nos experts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>CHRONOS</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Nos boutiques</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Presse</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Aide</h4>
+                <ul>
+                    <li><a href="#">Livraison & Retours</a></li>
+                    <li><a href="#">Guide des tailles</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Nous contacter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">📍 Avenue Habib Bourguiba, Tunis</a></li>
+                    <li><a href="#">📞 +216 71 234 567</a></li>
+                    <li><a href="#">✉️ contact@chronos.tn</a></li>
+                    <li><a href="#">🕐 Lun-Sam: 9h-18h</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">TikTok</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CHRONOS Tunisie. Tous droits réservés.</p>
+            <div class="payment-methods">
+                <span>💳</span>
+                <span>🏦</span>
+                <span>📱</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">0 TND</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Commander</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toastMessage">Ajouté au panier</span>
+    </div>
+
+    <script>
+        // Product Data
+        const products = [
+            { id: 1, brand: 'Rolex', name: 'Submariner Date', price: 45000, oldPrice: 48000, emoji: '⌚', badge: 'Bestseller', rating: 5, category: 'rolex' },
+            { id: 2, brand: 'Rolex', name: 'Daytona', price: 52000, oldPrice: null, emoji: '⌚', badge: 'Nouveau', rating: 5, category: 'rolex' },
+            { id: 3, brand: 'Omega', name: 'Speedmaster Moonwatch', price: 18500, oldPrice: 20000, emoji: '⌚', badge: 'Promo', rating: 4, category: 'omega' },
+            { id: 4, brand: 'Omega', name: 'Seamaster Diver', price: 15000, oldPrice: null, emoji: '⌚', badge: '', rating: 4, category: 'omega' },
+            { id: 5, brand: 'Cartier', name: 'Tank Louis', price: 28000, oldPrice: null, emoji: '⌚', badge: 'Iconique', rating: 5, category: 'cartier' },
+            { id: 6, brand: 'Cartier', name: 'Santos de Cartier', price: 24000, oldPrice: 26000, emoji: '⌚', badge: 'Promo', rating: 4, category: 'cartier' },
+            { id: 7, brand: 'Tag Heuer', name: 'Carrera Chronograph', price: 12000, oldPrice: null, emoji: '⌚', badge: '', rating: 4, category: 'tag-heuer' },
+            { id: 8, brand: 'Tag Heuer', name: 'Aquaracer Professional', price: 8500, oldPrice: 9500, emoji: '⌚', badge: 'Promo', rating: 4, category: 'tag-heuer' },
+            { id: 9, brand: 'Patek Philippe', name: 'Nautilus', price: 95000, oldPrice: null, emoji: '⌚', badge: 'Exclusif', rating: 5, category: 'patek' },
+            { id: 10, brand: 'Patek Philippe', name: 'Calatrava', price: 68000, oldPrice: null, emoji: '⌚', badge: '', rating: 5, category: 'patek' },
+            { id: 11, brand: 'Rolex', name: 'Datejust 41', price: 32000, oldPrice: 35000, emoji: '⌚', badge: 'Promo', rating: 5, category: 'rolex' },
+            { id: 12, brand: 'Omega', name: 'Constellation', price: 16500, oldPrice: null, emoji: '⌚', badge: '', rating: 4, category: 'omega' },
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Render Products
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('productsGrid');
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card animate-on-scroll" data-category="${product.category}">
+                    <div class="product-image">
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        ${product.emoji}
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">${product.brand}</p>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">
+                            ${formatPrice(product.price)}
+                            ${product.oldPrice ? `<span class="old">${formatPrice(product.oldPrice)}</span>` : ''}
+                        </p>
+                        <p class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
+                        <button class="btn" style="margin-top: 1rem; padding: 0.6rem 1.5rem; font-size: 0.75rem;" onclick="addToCart(${product.id})">
+                            Ajouter au Panier
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            observeElements();
+        }
+
+        // Format Price in TND
+        function formatPrice(price) {
+            return price.toLocaleString('fr-TN') + ' TND';
+        }
+
+        // Filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderProducts(currentFilter);
+            });
+        });
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+            showToast(`${product.name} ajouté au panier`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                    return;
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = formatPrice(totalPrice);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><p>Votre panier est vide</p></div>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">${item.emoji}</div>
+                        <div class="cart-item-info">
+                            <p class="cart-item-name">${item.brand} ${item.name}</p>
+                            <p class="cart-item-price">${formatPrice(item.price)}</p>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="remove-item" onclick="removeFromCart(${item.id})">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+            document.getElementById('cartOverlay').classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Votre panier est vide');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            showToast(`Commande confirmée! Total: ${formatPrice(total)}`);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Scroll Animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        renderProducts();
+        updateCart();
+    </script>
+</body>
+</html>
